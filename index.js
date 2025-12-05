@@ -6,17 +6,42 @@ const port = 4000;
 
 app.use(express.json());
 
+// MongoDB connection caching for serverless
+let isConnected = false;
+
+async function connectToDatabase() {
+  if (isConnected && mongoose.connection.readyState === 1) {
+    return;
+  }
+
+  try {
+    await mongoose.connect('mongodb+srv://pv33623_db_user:RIwOzPzRyTgnn0S7@cluster0.29zhafd.mongodb.net/test?appName=Cluster0', {
+      bufferCommands: false,
+    });
+    isConnected = true;
+    console.log('Ligado ao MongoDB via Mongoose');
+  } catch (err) {
+    console.error('Erro a ligar ao MongoDB:', err);
+    throw err;
+  }
+}
+
+// middleware to ensure DB connection before each request
+app.use(async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (err) {
+    res.status(500).send('Database connection error');
+  }
+});
+
 // middleware de log
 app.use((req, res, next) => {
   const agora = new Date().toISOString();
   console.log(`[${agora}] ${req.method} ${req.originalUrl}`);
   next();
 });
-
-// Connect to MongoDB
-mongoose.connect('mongodb+srv://pv33623_db_user:RIwOzPzRyTgnn0S7@cluster0.29zhafd.mongodb.net/test?appName=Cluster0')
-  .then(() => console.log('Ligado ao MongoDB via Mongoose'))
-  .catch(err => console.error('Erro a ligar ao MongoDB:', err));
 
 const menuRouter = require('./Controllers/menu_do_dia');
 

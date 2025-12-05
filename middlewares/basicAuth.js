@@ -6,12 +6,12 @@ async function basicAuth(req, res, next) {
 
   if (!authHeader) {
     res.set('WWW-Authenticate', 'Basic realm="Area Segura"');
-    return res.status(401).send('Autenticação necessária');
+    return res.status(401).send('Autenticação necessaria');
   }
 
   const parts = authHeader.split(' ');
   if (parts.length !== 2 || parts[0] !== 'Basic') {
-    return res.status(400).send('Header Authorization inválido');
+    return res.status(400).send('Header Authorization invalido');
   }
 
   const base64 = parts[1];
