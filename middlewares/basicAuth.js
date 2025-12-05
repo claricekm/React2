@@ -5,7 +5,7 @@ async function basicAuth(req, res, next) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    res.set('WWW-Authenticate', 'Basic realm="Área Segura"');
+    res.set('WWW-Authenticate', 'Basic realm="Area Segura"');
     return res.status(401).send('Autenticação necessária');
   }
 
