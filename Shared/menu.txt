@@ -1,0 +1,5 @@
+{"codigo":"P001","nome":"Bibimbap","tipo":"normal"}
+{"codigo":"P002","nome":"Kimchi Jjigae","tipo":"normal"}
+{"codigo":"P003","nome":"Tteokbokki","tipo":"normal"}
+{"codigo":"P004","nome":"Japchae","tipo":"normal"}
+{"codigo":"P005","nome":"Jajangmyeon","tipo":"normal"}
