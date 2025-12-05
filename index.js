@@ -13,27 +13,21 @@ app.use((req, res, next) => {
   next();
 });
 
-async function start() {
-  try {
-    //await mongoose.connect('mongodb://localhost:27017/fichatdw');
-await mongoose.connect('mongodb+srv://pv33623_db_user:RIwOzPzRyTgnn0S7@cluster0.29zhafd.mongodb.net/test?appName=Cluster0');
-  //await mongoose.connect('mongodb+srv://pv33623_db_user:RIwOzPzRyTgnn0S7@cluster0.1vsqtik.mongodb.net/?appName=Cluster0');
-    console.log('Ligado ao MongoDB via Mongoose');
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://pv33623_db_user:RIwOzPzRyTgnn0S7@cluster0.29zhafd.mongodb.net/test?appName=Cluster0')
+  .then(() => console.log('Ligado ao MongoDB via Mongoose'))
+  .catch(err => console.error('Erro a ligar ao MongoDB:', err));
 
-    const menuRouter = require('./Controllers/menu_do_dia');
+const menuRouter = require('./Controllers/menu_do_dia');
 
-    // proteger apenas as rotas /menu
-    app.use('/menu', basicAuth, menuRouter);
+// proteger apenas as rotas /menu
+app.use('/menu', basicAuth, menuRouter);
 
-    app.listen(port, () => {
-      console.log('Restaurante da Manuela rodando na porta ' + port);
-    });
-  } catch (err) {
-    console.error('Erro a ligar ao MongoDB:', err);
-    process.exit(1);
-  }
+// Only listen locally, not on serverless
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log('Restaurante da Manuela rodando na porta ' + port);
+  });
 }
-
-start();
 
 module.exports = app;
