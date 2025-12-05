@@ -27,7 +27,7 @@ async function basicAuth(req, res, next) {
     const user = await User.findOne({ username });
 
     if (!user || user.password !== password) {
-      res.set('WWW-Authenticate', 'Basic realm="Área Segura"');
+      res.set('WWW-Authenticate', 'Basic realm="Area Segura"');
       return res.status(401).send('Credenciais inválidas');
     }
 
