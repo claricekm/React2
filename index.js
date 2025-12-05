@@ -36,4 +36,4 @@ await mongoose.connect('mongodb+srv://pv33623_db_user:RIwOzPzRyTgnn0S7@cluster0.
 
 start();
 
-//module.exports = app;
+module.exports = app;
