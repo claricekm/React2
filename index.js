@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const basicAuth = require('./middlewares/basicAuth');
 const app = express();
-const PORT = 4000;
+const port = 4000;
 
 app.use(express.json());
 
