@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const basicAuth = require('./middlewares/basicAuth');
 const app = express();
-const port = 4000;
 
 app.use(express.json());
 
@@ -34,4 +33,5 @@ await mongoose.connect('mongodb+srv://pv33623_db_user:1234@cluster0.29zhafd.mong
 }
 
 start();
-                                        
+
+module.exports = app;
