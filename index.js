@@ -16,7 +16,8 @@ app.use((req, res, next) => {
 async function start() {
   try {
     //await mongoose.connect('mongodb://localhost:27017/fichatdw');
-await mongoose.connect('mongodb+srv://pv33623_db_user:1234@cluster0.29zhafd.mongodb.net/?appName=Cluster0');
+await mongoose.connect('mongodb+srv://pv33623_db_user:RIwOzPzRyTgnn0S7@cluster0.29zhafd.mongodb.net/test?appName=Cluster0');
+  //await mongoose.connect('mongodb+srv://pv33623_db_user:RIwOzPzRyTgnn0S7@cluster0.1vsqtik.mongodb.net/?appName=Cluster0');
     console.log('Ligado ao MongoDB via Mongoose');
 
     const menuRouter = require('./Controllers/menu_do_dia');
